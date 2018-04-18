@@ -8,14 +8,14 @@
   <title>attachEvent | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
-<meta name="keywords" content="DOM,Event,Javascript">
+<meta name="keywords" content="Javascript,DOM,Event">
 <meta property="og:type" content="article">
 <meta property="og:title" content="attachEvent">
 <meta property="og:url" content="https://chenqipeng.github.io/2018/04/19/attachEvent/index.html">
 <meta property="og:site_name" content="Stuff">
 <meta property="og:description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-18T16:55:10.144Z">
+<meta property="og:updated_time" content="2018-04-18T17:04:57.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="attachEvent">
 <meta name="twitter:description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/19/attachEvent/" data-id="cjg5c9an200044jjo5zxjzg27" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/attachEvent/" data-id="cjg5clk7i000a3zjo1v0jhrxm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -116,7 +116,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/19/forEach-and-splice/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/19/Array的forEach与splice/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -126,7 +126,7 @@
     </a>
   
   
-    <a href="/2018/04/18/compare-null-with-zero/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/18/null 与 0 的比较判断/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">null 与 0 的比较判断</div>
     </a>
@@ -154,7 +154,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
     </div>
   </div>
 
@@ -164,7 +164,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/DOM/" style="font-size: 16.67px;">DOM</a> <a href="/tags/Event/" style="font-size: 13.33px;">Event</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
+      <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/DOM/" style="font-size: 16.67px;">DOM</a> <a href="/tags/Event/" style="font-size: 13.33px;">Event</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
     </div>
   </div>
 
@@ -186,15 +186,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/19/中文测试/">中文文件名测试</a>
+            <a href="/2018/04/19/Markdown语法小记/">Markdown语法小记</a>
           </li>
         
           <li>
-            <a href="/2018/04/19/markdown-note/">Markdown语法小记</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/19/float-precision/">浮点数精度问题</a>
+            <a href="/2018/04/19/浮点数精度问题/">浮点数精度问题</a>
           </li>
         
           <li>
@@ -202,7 +198,11 @@
           </li>
         
           <li>
-            <a href="/2018/04/19/KeyboardEvent/">KeyboardEvent的事件类型</a>
+            <a href="/2018/04/19/KeyboardEvent的事件类型/">KeyboardEvent的事件类型</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/19/line-height设置不同值在子元素继承下的不同/">line-height设置不同值在子元素继承下的不同</a>
           </li>
         
       </ul>
