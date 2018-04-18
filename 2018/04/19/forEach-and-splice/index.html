@@ -5,20 +5,20 @@
   
 
   
-  <title>null 与 0 的比较判断 | Stuff</title>
+  <title>Array的forEach与splice | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+  <meta name="description" content="1234567this.multipleSelection.forEach(function (item, index) &amp;#123;    if (selectRow.waresId == item.waresId) &amp;#123;        this.multipleSelection.splice(index, 1);        exist = true;        return">
 <meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="null 与 0 的比较判断">
-<meta property="og:url" content="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/index.html">
+<meta property="og:title" content="Array的forEach与splice">
+<meta property="og:url" content="https://chenqipeng.github.io/2018/04/19/forEach-and-splice/index.html">
 <meta property="og:site_name" content="Stuff">
-<meta property="og:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta property="og:description" content="1234567this.multipleSelection.forEach(function (item, index) &amp;#123;    if (selectRow.waresId == item.waresId) &amp;#123;        this.multipleSelection.splice(index, 1);        exist = true;        return">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-18T16:43:57.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="null 与 0 的比较判断">
-<meta name="twitter:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta name="twitter:title" content="Array的forEach与splice">
+<meta name="twitter:description" content="1234567this.multipleSelection.forEach(function (item, index) &amp;#123;    if (selectRow.waresId == item.waresId) &amp;#123;        this.multipleSelection.splice(index, 1);        exist = true;        return">
   
     <link rel="alternate" href="/atom.xml" title="Stuff" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-forEach-and-splice" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/04/19/forEach-and-splice/" class="article-date">
+  <time datetime="2018-04-19T00:15:11.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      null 与 0 的比较判断
+      Array的forEach与splice
     </h1>
   
 
@@ -91,31 +91,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
-</blockquote>
-<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
-<ul>
-<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
-<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
-<p>If r is true or undefined, return false. Otherwise, return true.</p>
-</blockquote>
-</li>
-</ul>
-<p>根据以上两点，可以得出结论：</p>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.multipleSelection.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (selectRow.waresId == item.waresId) &#123;</span><br><span class="line">        <span class="keyword">this</span>.multipleSelection.splice(index, <span class="number">1</span>);</span><br><span class="line">        exist = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>以上一段代码在实际运行中，由于<code>waresId</code>是唯一标识，所以不会产生预料之外的异常。但在<code>forEach</code>中使用<code>splice</code>，在某些情况下是会发生一些预料之外的异常的。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">ary.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(item % <span class="number">3</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    ary.splice(index, <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ary:[1, 2, 3, 5, 7, 8]</span></span><br></pre></td></tr></table></figure>
+<p>业务逻辑本意是删除3的倍数，然而最后结果却是<code>[1, 2, 3, 5, 7, 8]</code>，结果中依然包含一个3。<br>本例中，由于<code>splice</code>函数修改了数组，导致第二个3没有如期待的那样进入循环迭代，所以没有被删除掉。</p>
 <ol>
-<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
-<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
+<li>在《JS函数式编程指南》中，曾批评过<code>splice</code>，原因是<code>splice</code>不是一个<em>纯函数</em>，调用<code>splice</code>可能会发生一些无法观察到变化，致使程序异常。</li>
+<li>抛开<code>splice</code>函数来说，也应尽量不在数组的循环中做修改数组长度的操作，避免出现异常。</li>
 </ol>
-<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5buovj000515jpqmvs0nvp" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/forEach-and-splice/" data-id="cjg5buovp000a15jpelkoxn9v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -126,15 +114,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/19/attachEvent/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/19/nth-of-type/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          attachEvent
+          nth-of-type选择符
         
       </div>
     </a>
   
+  
+    <a href="/2018/04/19/attachEvent/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">attachEvent</div>
+    </a>
   
 </nav>
 

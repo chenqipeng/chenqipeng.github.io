@@ -5,20 +5,20 @@
   
 
   
-  <title>null 与 0 的比较判断 | Stuff</title>
+  <title>Promise基础原理 | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+  <meta name="description" content="1234567891011121314151617181920212223class P &amp;#123;  constructor (fn) &amp;#123;    this.resoleveCbs = []    this.resoleveFn = () =&amp;gt; this.resoleveCbs.forEach(cb =&amp;gt; cb())    fn(this.resoleveFn)  &amp;#12">
 <meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="null 与 0 的比较判断">
-<meta property="og:url" content="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/index.html">
+<meta property="og:title" content="Promise基础原理">
+<meta property="og:url" content="https://chenqipeng.github.io/2018/04/19/promise-base/index.html">
 <meta property="og:site_name" content="Stuff">
-<meta property="og:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta property="og:description" content="1234567891011121314151617181920212223class P &amp;#123;  constructor (fn) &amp;#123;    this.resoleveCbs = []    this.resoleveFn = () =&amp;gt; this.resoleveCbs.forEach(cb =&amp;gt; cb())    fn(this.resoleveFn)  &amp;#12">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-18T16:43:57.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="null 与 0 的比较判断">
-<meta name="twitter:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta name="twitter:title" content="Promise基础原理">
+<meta name="twitter:description" content="1234567891011121314151617181920212223class P &amp;#123;  constructor (fn) &amp;#123;    this.resoleveCbs = []    this.resoleveFn = () =&amp;gt; this.resoleveCbs.forEach(cb =&amp;gt; cb())    fn(this.resoleveFn)  &amp;#12">
   
     <link rel="alternate" href="/atom.xml" title="Stuff" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-promise-base" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/04/19/promise-base/" class="article-date">
+  <time datetime="2018-04-19T00:25:02.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      null 与 0 的比较判断
+      Promise基础原理
     </h1>
   
 
@@ -91,31 +91,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
-</blockquote>
-<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
-<ul>
-<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
-<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
-<p>If r is true or undefined, return false. Otherwise, return true.</p>
-</blockquote>
-</li>
-</ul>
-<p>根据以上两点，可以得出结论：</p>
-<ol>
-<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
-<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
-</ol>
-<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.resoleveCbs = []</span><br><span class="line">    <span class="keyword">this</span>.resoleveFn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.resoleveCbs.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> cb())</span><br><span class="line">    fn(<span class="keyword">this</span>.resoleveFn)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  then (cb) &#123;</span><br><span class="line">    <span class="keyword">this</span>.resoleveCbs.push(cb)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> P(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'resolve'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5buovj000515jpqmvs0nvp" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/promise-base/" data-id="cjg5buow4000n15jpcfy0ulup" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -126,15 +107,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/19/attachEvent/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/19/line-height/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          attachEvent
+          line-height设置不同值在子元素继承下的不同
         
       </div>
     </a>
   
+  
+    <a href="/2018/04/19/margin-padding-percentage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">margin和padding设置百分比值</div>
+    </a>
   
 </nav>
 

@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-markdown-note" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/04/19/markdown-note/" class="article-date">
+  <time datetime="2018-04-19T00:40:56.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/compare-null-with-zero/">null 与 0 的比较判断</a>
+      <a class="article-title" href="/2018/04/19/markdown-note/">Markdown语法小记</a>
     </h1>
   
 
@@ -88,31 +88,292 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
-</blockquote>
-<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
+        <ul>
+<li><p>标题：#，或者=和-，#个数代表标题级数</p>
+</li>
+<li><p>斜体：*斜体* =&gt; <em>斜体</em></p>
+</li>
+<li><p>粗体：**粗体** =&gt; <strong>粗体</strong></p>
+</li>
+<li><p>删除线： ~~删除线~~ =&gt; <del>删除线</del></p>
+</li>
+<li><p>列表：有序列表（1. 2. 3.），无序列表（* + -）</p>
 <ul>
-<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
-<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
-<p>If r is true or undefined, return false. Otherwise, return true.</p>
-</blockquote>
+<li>可以有多级列表</li>
+</ul>
+</li>
+<li><p>链接：[goto](<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a>) =&gt; <a href="https://www.google.com" target="_blank" rel="noopener">goto</a></p>
+<ul>
+<li>还可以使用引用语法</li>
+</ul>
+</li>
+<li><p>图片：![alt text](<a href="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" target="_blank" rel="noopener">https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png</a> “Logo Title Text 1”) =&gt; <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
+<ul>
+<li>同样可以使用引用语法</li>
+</ul>
+</li>
+<li><p>代码：`let a = 1` =&gt; <code>let a = 1</code></p>
+<ul>
+<li>```javascript 代码块 =&gt; ``` 可以以javascript语法高亮代码块</li>
+</ul>
+</li>
+<li><p>表格： 使用 | 隔开即可，使用 - 隔开表头</p>
+</li>
+<li><p>引用： &gt; 引用</p>
+</li>
+<li><p>分割线： 三个(或以上)连着的 - 、* 或 _</p>
+</li>
+<li><p>换行：相邻两行文本，如果中间没有空行，会显示在一行中（换行符被转换为空格）。如果需要在段落内加入换行，可以在前一行的末尾加入至少两个空格，然后换行写其它的文字</p>
 </li>
 </ul>
-<p>根据以上两点，可以得出结论：</p>
-<ol>
-<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
-<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
-</ol>
-<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5acyoa00003zji8lhatyyp" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/markdown-note/" data-id="cjg5buovx000h15jpsiw860n0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-float-precision" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/float-precision/" class="article-date">
+  <time datetime="2018-04-19T00:39:00.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/float-precision/">float-precision</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对整数而言，整数的确是无限的，所以计算机中整数的有效表示范围是有限的是可以很容易理解的。而且，对于每一个在有效范围内的整数，其对应的二进制码也是可以唯一确定。所以，整数的精度不成问题（在有限范围内）。</p>
+<p>然而对于浮点数来说，就是数学上的小数，精度问题在现在计算机系统来说是个无解的问题。小数（单纯讨论小数点后面的小数位），就是范围在(0,1)内的数字，在数学上的数轴表示，是无限的。然而在计算机存储系统中，由于可供存储的位数有限，必然是无法存储所有的浮点数，所以就导致了浮点数的精度问题。这就是从数学角度看浮点数在现有计算机科学上的精度问题。</p>
+<p>从微观一点的角度来看，即一个浮点数在转换成二进制时，其值可能会是一个无限小数（可能是循环的，也可能是不循环的）。由于可供存储的位数有限，必然会导致“截断”，精度问题随此产生。</p>
+<p>估计Javascript在针对浮点数的精度问题做处理时不及其他静态语言，所以这个问题在Javascript上显得尤为突出。</p>
+<p>看了几个解决方案，内部原理都是将浮点型转换成整型（字符串操作）再做运算，运算后再转换会浮点数。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/float-precision/" data-id="cjg5buovl000615jppqi98gz7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DOMContentLoaded" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/DOMContentLoaded/" class="article-date">
+  <time datetime="2018-04-19T00:32:13.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/DOMContentLoaded/">DOMContentLoaded</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>DOMContentLoaded</code>事件常用于注册那些需要DOM加载完成后执行的回调函数，和<code>window.onload</code>类似，但两者的触发时机是不同的。简单来说：<code>DOMContentLoaded</code>无需等待样式表、图像和子框架的完成加载，而<code>window.onload</code>需要等待一切加载完成才触发。</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Events/DOMContentLoaded" target="_blank" rel="noopener">MDN相关文档</a></li>
+<li>相关博客：<a href="http://www.cnblogs.com/hh54188/archive/2013/03/01/2939426.html" target="_blank" rel="noopener">1</a>、<a href="http://www.alloyteam.com/2014/03/effect-js-css-and-img-event-of-domcontentloaded/" target="_blank" rel="noopener">2</a></li>
+<li>jQuery v3.3.1 相关源码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The ready event handler and self cleanup method</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">completed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">document</span>.removeEventListener( <span class="string">"DOMContentLoaded"</span>, completed );</span><br><span class="line">	<span class="built_in">window</span>.removeEventListener( <span class="string">"load"</span>, completed );</span><br><span class="line">	jQuery.ready();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Catch cases where $(document).ready() is called</span></span><br><span class="line"><span class="comment">// after the browser event has already occurred.</span></span><br><span class="line"><span class="comment">// Support: IE &lt;=9 - 10 only</span></span><br><span class="line"><span class="comment">// Older IE sometimes signals "interactive" too soon</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">document</span>.readyState === <span class="string">"complete"</span> ||</span><br><span class="line">	( <span class="built_in">document</span>.readyState !== <span class="string">"loading"</span> &amp;&amp; !<span class="built_in">document</span>.documentElement.doScroll ) ) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Handle it asynchronously to allow scripts the opportunity to delay ready</span></span><br><span class="line">	<span class="built_in">window</span>.setTimeout( jQuery.ready );</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Use the handy event callback</span></span><br><span class="line">	<span class="built_in">document</span>.addEventListener( <span class="string">"DOMContentLoaded"</span>, completed );</span><br><span class="line"></span><br><span class="line">	<span class="comment">// A fallback to window.onload, that will always work</span></span><br><span class="line">	<span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, completed );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/DOMContentLoaded/" data-id="cjg5buov2000015jp9uu7core" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-KeyboardEvent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/KeyboardEvent/" class="article-date">
+  <time datetime="2018-04-19T00:29:57.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/KeyboardEvent/">KeyboardEvent的事件类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>KeyboardEvent</code>对象描述了键盘的交互方式，有三种类型的事件，分别为：·<code>keydown</code>（按下按键），<code>keypress</code>（非修饰键按下），<code>keyup</code>（释放按键）。</p>
+<ul>
+<li><p>如果按键长按下不松开，则<code>keydown</code>不断重复；如果按键是非修饰键，则<code>keypress</code>也不断重复。<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent" target="_blank" rel="noopener">详见</a></p>
+</li>
+<li><p>根据<a href="https://www.w3.org/TR/uievents/#events-keyboardevents" target="_blank" rel="noopener">文档</a>，应该是尽量避免使用<code>keypress</code>事件。文档已经将<code>keypress</code>归为legacy，应该使用更为通用的<code>input</code>事件，因为<code>keypress</code>在非键盘的环境下不可用（例如触屏手机下的输入）。</p>
+<blockquote>
+<p>Note that the keypress event is specific to key events, and has been    replaced by the more general event sequence of beforeinput and input events. These new input events are not specific to    keyboard actions and can be used to capture user input regardless of the original source.</p>
+</blockquote>
+</li>
+<li><p><code>beforeinput</code>事件浏览器支持覆盖率应该还不高（2018年2月），粗略测试了下，在Chrome 64下已经实现了，但在IE 11还没实现。MDN和Can I use下也没发现相关文档和信息。慎用。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/KeyboardEvent/" data-id="cjg5buova000115jphjcryw0e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event/">Event</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-line-height" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/line-height/" class="article-date">
+  <time datetime="2018-04-19T00:28:13.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/line-height/">line-height设置不同值在子元素继承下的不同</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>line-heght</code>属性在设置值时，可以有四种设置方式：</p>
+<ol>
+<li><code>normal</code>：基于浏览器的设置</li>
+<li><code>&lt;number&gt;</code>：无单位数字，相当于一个系数</li>
+<li><code>&lt;length&gt;</code>：带单位的指定值，单位可能为px、em等</li>
+<li><code>&lt;percentage&gt;</code>：百分比值</li>
+</ol>
+<p>以上设置值的方式在计算其自身的行高时很好理解，只需基于自身的<code>font-size</code>设置即可。<br>可能出现问题的情况在于：<br><strong>当父元素使用<code>&lt;length&gt;</code>和<code>&lt;percentage&gt;</code>时，子元素如果没有设置自身的行高，则会继承父元素计算后的值，而在使用<code>&lt;number&gt;</code>时，子元素只会继承这个值，具体行高子元素会根据自身<code>font-size</code>再设置。</strong></p>
+<p>所以这也是在设置行高推荐使用<code>&lt;number&gt;</code>方式设置的原因。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/line-height/" data-id="cjg5buovs000b15jpfng9o7t9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-promise-base" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/promise-base/" class="article-date">
+  <time datetime="2018-04-19T00:25:02.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/promise-base/">Promise基础原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.resoleveCbs = []</span><br><span class="line">    <span class="keyword">this</span>.resoleveFn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.resoleveCbs.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> cb())</span><br><span class="line">    fn(<span class="keyword">this</span>.resoleveFn)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  then (cb) &#123;</span><br><span class="line">    <span class="keyword">this</span>.resoleveCbs.push(cb)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> P(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    resolve()</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'resolve'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/promise-base/" data-id="cjg5buow4000n15jpcfy0ulup" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -124,7 +385,222 @@
 
 
   
+    <article id="post-margin-padding-percentage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/margin-padding-percentage/" class="article-date">
+  <time datetime="2018-04-19T00:23:07.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/margin-padding-percentage/">margin和padding设置百分比值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>margin和padding设置百分比值，是基于父元素contain-box的宽度计算的。</p>
+<blockquote>
+<p>margin: The percentage is calculated with respect to the width of the generated box’s containing block. Note that this is true for ‘margin-top’ and ‘margin-bottom’ as well. If the containing block’s width depends on this element, then the resulting layout is undefined in CSS 2.1.</p>
+</blockquote>
+<blockquote>
+<p>padding: The percentage is calculated with respect to the width of the generated box’s containing block, even for ‘padding-top’ and ‘padding-bottom’. If the containing block’s width depends on this element, then the resulting layout is undefined in CSS 2.1.</p>
+</blockquote>
+<ul>
+<li>基于这个设置，可以做到很多效果，如等比盒子，圣杯布局等</li>
+<li><p><a href="https://www.hongkiat.com/blog/calculate-css-percentage-margins/" target="_blank" rel="noopener">为什么基于父元素计算？为什么基于宽度计算？</a>大致来说，基于父元素是为了实现布局，基于宽度是为了水平垂直设置的一致性和避免计算循环依赖</p>
+<blockquote>
+<p>If I set a div to be 50% of the width of its container, and then I want its left and right margins to fill the rest of the space, I’d naturally set them to 25% each (so the percentages add up to 100%). For that to work, percentage margins must be based on the dimensions of the container.</p>
+</blockquote>
+<blockquote>
+<p>1.Horizontal and Vertical Consistency 2.Avoiding Circular Dependency</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/margin-padding-percentage/" data-id="cjg5buovv000f15jpydkvnphc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nth-of-type" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/nth-of-type/" class="article-date">
+  <time datetime="2018-04-19T00:20:04.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/nth-of-type/">nth-of-type选择符</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span-1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">i</span>&gt;</span>i-1<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>span-boo-1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">i</span>&gt;</span>i-2<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>span-boo-2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">i</span>&gt;</span>i-3<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span-2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span-3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>span-boo-3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">i</span>&gt;</span>i-4<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">i</span>&gt;</span>i-5<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span-4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>span-boo-4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>span-boo-5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span-5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span>, <span class="selector-tag">i</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-class">.boo</span><span class="selector-pseudo">:nth-of-type(2n)</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码，本意原是想每偶数个<code>class=&quot;boo&quot;</code>的元素设置<code>color: red;</code>，然而，最终生效的元素只有：<code>span-boo-1</code>,<code>span-boo-3</code>,<code>span-boo-4</code>。</p>
+<p>这个例子说明了：伪类选择符<code>E:nth-of-type(n)</code>总是以<code>E</code>标签为基础计算列表，算法在寻找符合<code>(n)</code>条件的元素时，总是在同父级的<code>E</code>标签列表里寻找。如果没有设置，则为<code>*</code>。</p>
+<p>解析<code>.boo:nth-of-type(2n)</code>，就是<code>*:nth-of-type(2n).boo</code>，先寻找符合<code>*:nth-of-type(2n)</code>的，再寻找<strong>与</strong><code>.boo</code>，所以最终结果就是<code>span-boo-1</code>,<code>span-boo-3</code>,<code>span-boo-4</code>。</p>
+<p>所以回到本例，想要设置每偶数个<code>class=&quot;boo&quot;</code>的元素样式，除了把<code>class=&quot;boo&quot;</code>的元素标签换成其他标签，暂时没想到其他的方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/nth-of-type/" data-id="cjg5buow2000k15jpdz9x6wyh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-forEach-and-splice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/forEach-and-splice/" class="article-date">
+  <time datetime="2018-04-19T00:15:11.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/forEach-and-splice/">Array的forEach与splice</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.multipleSelection.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (selectRow.waresId == item.waresId) &#123;</span><br><span class="line">        <span class="keyword">this</span>.multipleSelection.splice(index, <span class="number">1</span>);</span><br><span class="line">        exist = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>以上一段代码在实际运行中，由于<code>waresId</code>是唯一标识，所以不会产生预料之外的异常。但在<code>forEach</code>中使用<code>splice</code>，在某些情况下是会发生一些预料之外的异常的。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">ary.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(item % <span class="number">3</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    ary.splice(index, <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ary:[1, 2, 3, 5, 7, 8]</span></span><br></pre></td></tr></table></figure>
+<p>业务逻辑本意是删除3的倍数，然而最后结果却是<code>[1, 2, 3, 5, 7, 8]</code>，结果中依然包含一个3。<br>本例中，由于<code>splice</code>函数修改了数组，导致第二个3没有如期待的那样进入循环迭代，所以没有被删除掉。</p>
+<ol>
+<li>在《JS函数式编程指南》中，曾批评过<code>splice</code>，原因是<code>splice</code>不是一个<em>纯函数</em>，调用<code>splice</code>可能会发生一些无法观察到变化，致使程序异常。</li>
+<li>抛开<code>splice</code>函数来说，也应尽量不在数组的循环中做修改数组长度的操作，避免出现异常。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/forEach-and-splice/" data-id="cjg5buovp000a15jpelkoxn9v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-attachEvent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/19/attachEvent/" class="article-date">
+  <time datetime="2018-04-19T00:09:15.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/19/attachEvent/">attachEvent</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 兼容FF和IE和Opera</span></span><br><span class="line"><span class="keyword">var</span> theEvent = e || <span class="built_in">window</span>.event;</span><br></pre></td></tr></table></figure>
+<p>以上代码是在同事写的<code>addEventListener</code>里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：</p>
+<ul>
+<li><p>早期IE浏览器（IE8及早期版本）是不支持<a href="https://caniuse.com/#search=addEventListener" target="_blank" rel="noopener">addEventListener</a>语法的，这些IE的早期版本使用的是微软一个专有的替代性标准<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/attachEvent" target="_blank" rel="noopener">attachEvent</a></p>
+</li>
+<li><p>根据<a href="https://stackoverflow.com/questions/3493033/what-is-the-meaning-of-this-var-evt-eventwindow-event" target="_blank" rel="noopener">网友回答</a>：在IE中（所有版本？），event对象是一个全局变量，由于历史原因，所有全局变量都是window对象的成员变量。所以有以上代码写法。</p>
+</li>
+<li><p>根据<a href="http://www.cnblogs.com/huajs/archive/2011/11/10/2244793.html" target="_blank" rel="noopener">网友博客</a>和我自己的实测，其实这一写法是多余的。原因在于，无论是<code>addEventListener</code>还是<code>attachEvent</code>函数，其listener参数接收到的传入参数，都是event对象。即使是<code>attachEvent</code>，其listener的传入参数也是event对象，这个对象是window.event的一个<strong>复制的对象</strong>(两个并不全等)。所以无需以上写法来判断event对象是否存在。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/19/attachEvent/" data-id="cjg5buovh000415jp2jzi5l0y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -144,7 +620,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
     </div>
   </div>
 
@@ -154,7 +630,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a>
+      <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/DOM/" style="font-size: 16.67px;">DOM</a> <a href="/tags/Event/" style="font-size: 13.33px;">Event</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/计算机原理/" style="font-size: 10px;">计算机原理</a>
     </div>
   </div>
 
@@ -176,7 +652,23 @@
       <ul>
         
           <li>
-            <a href="/2018/04/18/compare-null-with-zero/">null 与 0 的比较判断</a>
+            <a href="/2018/04/19/markdown-note/">Markdown语法小记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/19/float-precision/">float-precision</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/19/DOMContentLoaded/">DOMContentLoaded</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/19/KeyboardEvent/">KeyboardEvent的事件类型</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/19/line-height/">line-height设置不同值在子元素继承下的不同</a>
           </li>
         
       </ul>

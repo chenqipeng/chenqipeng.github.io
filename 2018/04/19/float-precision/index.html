@@ -5,20 +5,20 @@
   
 
   
-  <title>null 与 0 的比较判断 | Stuff</title>
+  <title>float-precision | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
-<meta name="keywords" content="Javascript">
+  <meta name="description" content="对整数而言，整数的确是无限的，所以计算机中整数的有效表示范围是有限的是可以很容易理解的。而且，对于每一个在有效范围内的整数，其对应的二进制码也是可以唯一确定。所以，整数的精度不成问题（在有限范围内）。 然而对于浮点数来说，就是数学上的小数，精度问题在现在计算机系统来说是个无解的问题。小数（单纯讨论小数点后面的小数位），就是范围在(0,1)内的数字，在数学上的数轴表示，是无限的。然而在计算机存储系统">
+<meta name="keywords" content="Javascript,计算机原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="null 与 0 的比较判断">
-<meta property="og:url" content="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/index.html">
+<meta property="og:title" content="float-precision">
+<meta property="og:url" content="https://chenqipeng.github.io/2018/04/19/float-precision/index.html">
 <meta property="og:site_name" content="Stuff">
-<meta property="og:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta property="og:description" content="对整数而言，整数的确是无限的，所以计算机中整数的有效表示范围是有限的是可以很容易理解的。而且，对于每一个在有效范围内的整数，其对应的二进制码也是可以唯一确定。所以，整数的精度不成问题（在有限范围内）。 然而对于浮点数来说，就是数学上的小数，精度问题在现在计算机系统来说是个无解的问题。小数（单纯讨论小数点后面的小数位），就是范围在(0,1)内的数字，在数学上的数轴表示，是无限的。然而在计算机存储系统">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-18T16:43:57.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="null 与 0 的比较判断">
-<meta name="twitter:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta name="twitter:title" content="float-precision">
+<meta name="twitter:description" content="对整数而言，整数的确是无限的，所以计算机中整数的有效表示范围是有限的是可以很容易理解的。而且，对于每一个在有效范围内的整数，其对应的二进制码也是可以唯一确定。所以，整数的精度不成问题（在有限范围内）。 然而对于浮点数来说，就是数学上的小数，精度问题在现在计算机系统来说是个无解的问题。小数（单纯讨论小数点后面的小数位），就是范围在(0,1)内的数字，在数学上的数轴表示，是无限的。然而在计算机存储系统">
   
     <link rel="alternate" href="/atom.xml" title="Stuff" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-float-precision" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/04/19/float-precision/" class="article-date">
+  <time datetime="2018-04-19T00:39:00.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      null 与 0 的比较判断
+      float-precision
     </h1>
   
 
@@ -91,34 +91,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
-</blockquote>
-<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
-<ul>
-<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
-<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
-<p>If r is true or undefined, return false. Otherwise, return true.</p>
-</blockquote>
-</li>
-</ul>
-<p>根据以上两点，可以得出结论：</p>
-<ol>
-<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
-<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
-</ol>
-<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
+        <p>对整数而言，整数的确是无限的，所以计算机中整数的有效表示范围是有限的是可以很容易理解的。而且，对于每一个在有效范围内的整数，其对应的二进制码也是可以唯一确定。所以，整数的精度不成问题（在有限范围内）。</p>
+<p>然而对于浮点数来说，就是数学上的小数，精度问题在现在计算机系统来说是个无解的问题。小数（单纯讨论小数点后面的小数位），就是范围在(0,1)内的数字，在数学上的数轴表示，是无限的。然而在计算机存储系统中，由于可供存储的位数有限，必然是无法存储所有的浮点数，所以就导致了浮点数的精度问题。这就是从数学角度看浮点数在现有计算机科学上的精度问题。</p>
+<p>从微观一点的角度来看，即一个浮点数在转换成二进制时，其值可能会是一个无限小数（可能是循环的，也可能是不循环的）。由于可供存储的位数有限，必然会导致“截断”，精度问题随此产生。</p>
+<p>估计Javascript在针对浮点数的精度问题做处理时不及其他静态语言，所以这个问题在Javascript上显得尤为突出。</p>
+<p>看了几个解决方案，内部原理都是将浮点型转换成整型（字符串操作）再做运算，运算后再转换会浮点数。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5buovj000515jpqmvs0nvp" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/float-precision/" data-id="cjg5buovl000615jppqi98gz7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机原理/">计算机原理</a></li></ul>
 
     </footer>
   </div>
@@ -126,15 +111,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/19/attachEvent/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/19/markdown-note/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          attachEvent
+          Markdown语法小记
         
       </div>
     </a>
   
+  
+    <a href="/2018/04/19/DOMContentLoaded/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DOMContentLoaded</div>
+    </a>
   
 </nav>
 

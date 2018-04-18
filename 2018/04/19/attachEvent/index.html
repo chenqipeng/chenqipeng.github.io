@@ -5,20 +5,20 @@
   
 
   
-  <title>null 与 0 的比较判断 | Stuff</title>
+  <title>attachEvent | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
-<meta name="keywords" content="Javascript">
+  <meta name="description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
+<meta name="keywords" content="DOM,Event,Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="null 与 0 的比较判断">
-<meta property="og:url" content="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/index.html">
+<meta property="og:title" content="attachEvent">
+<meta property="og:url" content="https://chenqipeng.github.io/2018/04/19/attachEvent/index.html">
 <meta property="og:site_name" content="Stuff">
-<meta property="og:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta property="og:description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-18T16:43:57.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="null 与 0 的比较判断">
-<meta name="twitter:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
+<meta name="twitter:title" content="attachEvent">
+<meta name="twitter:description" content="12// 兼容FF和IE和Operavar theEvent = e || window.event; 以上代码是在同事写的addEventListener里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：  早期IE浏览器（IE8及早期版本）是不支持addEventListener语法的，这些IE的早期版本使用的是微软一个专有的替代性标准at">
   
     <link rel="alternate" href="/atom.xml" title="Stuff" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-attachEvent" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/04/19/attachEvent/" class="article-date">
+  <time datetime="2018-04-19T00:09:15.000Z" itemprop="datePublished">2018-04-19</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      null 与 0 的比较判断
+      attachEvent
     </h1>
   
 
@@ -91,34 +91,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
-</blockquote>
-<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 兼容FF和IE和Opera</span></span><br><span class="line"><span class="keyword">var</span> theEvent = e || <span class="built_in">window</span>.event;</span><br></pre></td></tr></table></figure>
+<p>以上代码是在同事写的<code>addEventListener</code>里发现的，根据注释，我想大概是IE的兼容性处理代码，但具体详情不明所以。一番查询，得出一些事件的知识点：</p>
 <ul>
-<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
-<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
-<p>If r is true or undefined, return false. Otherwise, return true.</p>
-</blockquote>
+<li><p>早期IE浏览器（IE8及早期版本）是不支持<a href="https://caniuse.com/#search=addEventListener" target="_blank" rel="noopener">addEventListener</a>语法的，这些IE的早期版本使用的是微软一个专有的替代性标准<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/attachEvent" target="_blank" rel="noopener">attachEvent</a></p>
+</li>
+<li><p>根据<a href="https://stackoverflow.com/questions/3493033/what-is-the-meaning-of-this-var-evt-eventwindow-event" target="_blank" rel="noopener">网友回答</a>：在IE中（所有版本？），event对象是一个全局变量，由于历史原因，所有全局变量都是window对象的成员变量。所以有以上代码写法。</p>
+</li>
+<li><p>根据<a href="http://www.cnblogs.com/huajs/archive/2011/11/10/2244793.html" target="_blank" rel="noopener">网友博客</a>和我自己的实测，其实这一写法是多余的。原因在于，无论是<code>addEventListener</code>还是<code>attachEvent</code>函数，其listener参数接收到的传入参数，都是event对象。即使是<code>attachEvent</code>，其listener的传入参数也是event对象，这个对象是window.event的一个<strong>复制的对象</strong>(两个并不全等)。所以无需以上写法来判断event对象是否存在。</p>
 </li>
 </ul>
-<p>根据以上两点，可以得出结论：</p>
-<ol>
-<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
-<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
-</ol>
-<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5buovj000515jpqmvs0nvp" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/19/attachEvent/" data-id="cjg5buovh000415jp2jzi5l0y" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
 
     </footer>
   </div>
@@ -126,15 +116,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/19/attachEvent/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/19/forEach-and-splice/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          attachEvent
+          Array的forEach与splice
         
       </div>
     </a>
   
+  
+    <a href="/2018/04/18/compare-null-with-zero/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">null 与 0 的比较判断</div>
+    </a>
   
 </nav>
 

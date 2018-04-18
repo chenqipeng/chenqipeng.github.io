@@ -5,11 +5,11 @@
   
 
   
-  <title>Archives: 2018 | Stuff</title>
+  <title>Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Stuff">
-<meta property="og:url" content="https://chenqipeng.github.io/archives/2018/index.html">
+<meta property="og:url" content="https://chenqipeng.github.io/page/2/index.html">
 <meta property="og:site_name" content="Stuff">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -62,213 +62,73 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/markdown-note/" class="archive-article-date">
-  <time datetime="2018-04-19T00:40:56.000Z" itemprop="datePublished">Apr 19</time>
+    <article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
+  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stuff/">stuff</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/markdown-note/">Markdown语法小记</a>
+      <a class="article-title" href="/2018/04/18/compare-null-with-zero/">null 与 0 的比较判断</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/float-precision/" class="archive-article-date">
-  <time datetime="2018-04-19T00:39:00.000Z" itemprop="datePublished">Apr 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/float-precision/">float-precision</a>
-    </h1>
-  
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>null</code>不大于0，不等于0，反而大于等于0？</p>
+</blockquote>
+<p>查阅标准文档，关于关系运算符的算法规则有以下：<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5" target="_blank" rel="noopener">The Abstract Relational Comparison Algorithm</a></p>
+<ul>
+<li>两边在算其数字值时参照<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-9.3" target="_blank" rel="noopener">ToNumber</a>。注意，这里<code>null</code>算出+0。</li>
+<li>以<code>&lt;</code>运算符为基础，<code>&gt;</code>运算为其右运算结果，<code>&lt;=</code>运算为<code>&gt;</code>运算结果的反值，<code>&gt;=</code>运算为<code>&lt;</code>运算结果的反值<blockquote>
+<p>If r is true or undefined, return false. Otherwise, return true.</p>
+</blockquote>
+</li>
+</ul>
+<p>根据以上两点，可以得出结论：</p>
+<ol>
+<li>求<code>null &gt;= 0</code>，即求<code>null &lt; 0</code>结果的反值</li>
+<li><code>null &lt; 0</code>结果为false，则<code>null &gt;= 0</code>结果为true</li>
+</ol>
+<p>至于<code>null == 0</code>，这个是等值运算符的算法规则计算，有别于关系运算符</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/DOMContentLoaded/" class="archive-article-date">
-  <time datetime="2018-04-19T00:32:13.000Z" itemprop="datePublished">Apr 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/DOMContentLoaded/">DOMContentLoaded</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/KeyboardEvent/" class="archive-article-date">
-  <time datetime="2018-04-19T00:29:57.000Z" itemprop="datePublished">Apr 19</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5buovj000515jpqmvs0nvp" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/KeyboardEvent/">KeyboardEvent的事件类型</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/line-height/" class="archive-article-date">
-  <time datetime="2018-04-19T00:28:13.000Z" itemprop="datePublished">Apr 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/line-height/">line-height设置不同值在子元素继承下的不同</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/promise-base/" class="archive-article-date">
-  <time datetime="2018-04-19T00:25:02.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/promise-base/">Promise基础原理</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/margin-padding-percentage/" class="archive-article-date">
-  <time datetime="2018-04-19T00:23:07.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/margin-padding-percentage/">margin和padding设置百分比值</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/nth-of-type/" class="archive-article-date">
-  <time datetime="2018-04-19T00:20:04.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/nth-of-type/">nth-of-type选择符</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/forEach-and-splice/" class="archive-article-date">
-  <time datetime="2018-04-19T00:15:11.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/forEach-and-splice/">Array的forEach与splice</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/19/attachEvent/" class="archive-article-date">
-  <time datetime="2018-04-19T00:09:15.000Z" itemprop="datePublished">Apr 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/attachEvent/">attachEvent</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 </section>
