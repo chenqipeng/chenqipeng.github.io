@@ -5,20 +5,20 @@
   
 
   
-  <title>compare-null-with-zero | Stuff</title>
+  <title>null 与 0 的比较判断 | Stuff</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="null 与 0 的比较判断12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //f">
+  <meta name="description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
 <meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="compare-null-with-zero">
+<meta property="og:title" content="null 与 0 的比较判断">
 <meta property="og:url" content="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/index.html">
 <meta property="og:site_name" content="Stuff">
-<meta property="og:description" content="null 与 0 的比较判断12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //f">
+<meta property="og:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-18T15:56:41.513Z">
+<meta property="og:updated_time" content="2018-04-18T16:02:11.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="compare-null-with-zero">
-<meta name="twitter:description" content="null 与 0 的比较判断12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //f">
+<meta name="twitter:title" content="null 与 0 的比较判断">
+<meta name="twitter:description" content="12//val值得可能为数字类型或nullreturn val &amp;gt;= 0 以上代码原本期望当val为null时，会返回false，结果并不是，而是返回了true然后我尝试了以下代码： 12345const A = null &amp;gt; 0const B = null == 0const C = null &amp;gt;= 0console.log(A, B, C) //false,false,tru">
   
     <link rel="alternate" href="/atom.xml" title="Stuff" type="application/atom+xml">
   
@@ -68,7 +68,7 @@
         <section id="main"><article id="post-compare-null-with-zero" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/18/compare-null-with-zero/" class="article-date">
-  <time datetime="2018-04-18T23:51:27.000Z" itemprop="datePublished">2018-04-18</time>
+  <time datetime="2018-04-18T00:00:00.000Z" itemprop="datePublished">2018-04-18</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      compare-null-with-zero
+      null 与 0 的比较判断
     </h1>
   
 
@@ -91,7 +91,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="null-与-0-的比较判断"><a href="#null-与-0-的比较判断" class="headerlink" title="null 与 0 的比较判断"></a>null 与 0 的比较判断</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val值得可能为数字类型或null</span></span><br><span class="line"><span class="keyword">return</span> val &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>以上代码原本期望当<code>val</code>为<code>null</code>时，会返回<code>false</code>，结果并不是，而是返回了<code>true</code><br>然后我尝试了以下代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A = <span class="literal">null</span> &gt; <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> B = <span class="literal">null</span> == <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> C = <span class="literal">null</span> &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A, B, C) <span class="comment">//false,false,true</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -115,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5a5rvp000041jbml8nlug0" class="article-share-link">Share</a>
+      <a data-url="https://chenqipeng.github.io/2018/04/18/compare-null-with-zero/" data-id="cjg5acyoa00003zji8lhatyyp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -177,7 +177,7 @@
       <ul>
         
           <li>
-            <a href="/2018/04/18/compare-null-with-zero/">compare-null-with-zero</a>
+            <a href="/2018/04/18/compare-null-with-zero/">null 与 0 的比较判断</a>
           </li>
         
       </ul>
