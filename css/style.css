@@ -6,6 +6,14 @@ main {
   width: 980px;
   margin: 0 auto;
 }
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
 header {
   background-color: #eaeaeb;
   position: fixed;
@@ -34,28 +42,30 @@ header ul {
   line-height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #777;
 }
 .header-nav-item ul {
   background-color: #eaeaeb;
   display: none;
 }
 .header-nav-item ul li {
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 5px;
 }
 .header-nav-item ul li:hover {
-  background-color: #fff;
+  background-color: rgba(219,219,220,0.4);
 }
-.header-nav-item ul li a {
+.header-nav-item a {
   display: block;
   height: 100%;
-  padding: 0 5px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: none;
 }
 .header-nav-item:hover {
   cursor: pointer;
-  background-color: #fff;
+  background-color: rgba(219,219,220,0.4);
 }
 .header-nav-item:hover ul {
   display: block;
